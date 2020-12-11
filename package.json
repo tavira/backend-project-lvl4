@@ -53,7 +53,8 @@
       "pino-pretty": "^4.3.0",
       "point-of-view": "^4.6.0",
       "pug": "^3.0.0",
-      "qs": "^6.9.4"
+      "qs": "^6.9.4",
+      "webpack": "^5.8.0"
    },
    "devDependencies": {
       "@babel/cli": "^7.12.8",
