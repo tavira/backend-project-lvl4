@@ -22,6 +22,7 @@ export default (app) => {
         return reply;
       } catch ({ data }) {
         req.flash('error', i18next.t('flash.users.create.error'));
+        reply.statusCode = 422;
         reply.render('users/new', { user: req.body.data, errors: data });
         return reply;
       }

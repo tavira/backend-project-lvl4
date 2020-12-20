@@ -31,6 +31,7 @@
    },
    "homepage": "https://github.com/tavira/backend-project-lvl4.git#readme",
    "dependencies": {
+      "ajv-errors": "^1.0.1",
       "bootstrap": "^4.5.3",
       "fastify": "^3.8.0",
       "fastify-error-page": "^4.0.0",

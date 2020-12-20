@@ -62,6 +62,38 @@ describe('test users CRUD', () => {
     expect(user).toMatchObject(expected);
   });
 
+  it('create: not be able with empty firstname', async () => {
+    const params = testData.users.emptyFirstname;
+    const response = await app.inject({
+      method: 'POST',
+      url: app.reverse('users'),
+      payload: {
+        data: params,
+      },
+    });
+
+    expect(response.statusCode).toBe(422);
+
+    const user = await models.user.query().findOne({ email: params.email });
+    expect(user).toBeUndefined();
+  });
+
+  it('create: not be able without firstname', async () => {
+    const params = testData.users.withoutFirstname;
+    const response = await app.inject({
+      method: 'POST',
+      url: app.reverse('users'),
+      payload: {
+        data: params,
+      },
+    });
+
+    expect(response.statusCode).toBe(422);
+
+    const user = await models.user.query().findOne({ email: params.email });
+    expect(user).toBeUndefined();
+  });
+
   afterEach(async () => {
     // после каждого теста откатываем миграции
     await knex.migrate.rollback();

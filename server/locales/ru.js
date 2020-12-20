@@ -37,6 +37,7 @@ module.exports = {
       users: {
         id: 'ID',
         email: 'Email',
+        firstname: 'Имя',
         createdAt: 'Дата создания',
         new: {
           submit: 'Сохранить',
@@ -48,6 +49,13 @@ module.exports = {
           hello: 'Привет от Хекслета!',
           description: 'Практические курсы по программированию',
           more: 'Узнать Больше',
+        },
+      },
+    },
+    validation: {
+      user: {
+        firstname: {
+          required: 'Это обязательное поле',
         },
       },
     },
