@@ -16,16 +16,35 @@ export default class User extends unique(BaseModel) {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['email', 'password', 'firstname'],
+      required: ['email', 'password', 'firstname', 'lastname'],
       properties: {
         id: { type: 'integer' },
-        email: { type: 'string', format: 'email' },
-        password: { type: 'string', minLength: 3 },
+        email: {
+          type: 'string',
+          format: 'email',
+          errorMessage: {
+            format: i18next.t('validation.user.email.format'),
+          },
+        },
+        password: {
+          type: 'string',
+          minLength: 3,
+          errorMessage: {
+            minLength: i18next.t('validation.user.password.minLength', { count: 3 }),
+          },
+        },
         firstname: {
           type: 'string',
           minLength: 1,
           errorMessage: {
-            minLength: i18next.t('validation.user.firstname.required'),
+            minLength: i18next.t('validation.user.firstname.minLength'),
+          },
+        },
+        lastname: {
+          type: 'string',
+          minLength: 1,
+          errorMessage: {
+            minLength: i18next.t('validation.user.lastname.minLength'),
           },
         },
       },

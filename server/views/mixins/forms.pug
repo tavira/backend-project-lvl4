@@ -1,4 +1,5 @@
 - const getInputName = (entity, property) => `data[${property}]`
+- const getInputId = (property) => `data_${property}`
 
 mixin formFor(entity = null)
   form&attributes(attributes)
@@ -10,6 +11,7 @@ mixin input(entity, viewName, propertyName, errors = [])
   .form-group(class=(errors[propertyName] && 'has-danger'))
     label= t(`${viewName}.${propertyName}`)
     input(
+      id=getInputId(propertyName)
       name=getInputName(entity, propertyName)
       class=classLine
       value=_.get(entity, propertyName, '')
@@ -21,7 +23,7 @@ mixin submit(form = null)
   .form-group
     input(class='btn btn-primary' type='submit')&attributes(attributes)
 
-mixin buttonTo(action, method)
-  form(action=action, method="post")
+mixin buttonTo(action, method, formAttributes = {})
+  form(action=action, method="post")&attributes(formAttributes)
     input(name="_method" type="hidden" value=method)
     input(type='submit')&attributes(attributes)

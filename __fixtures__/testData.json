@@ -3,11 +3,20 @@
     "new": {
       "email": "malika_hodkiewicz75@live.com",
       "password": "RLJvaIgPOnX5r03",
-      "firstname": "malika"
+      "firstname": "malika",
+      "lastname": "hodkiewicz"
     },
     "existing": {
       "email": "lawrence.kulas87@outlook.com",
-      "password": "O6AvLIQL1cbzrre"
+      "password": "1234",
+      "firstname": "lawrence",
+      "lastname": "kulas"
+    },
+    "updated": {
+      "email": "updated_lawrence87@outlook.com",
+      "password": "12345",
+      "firstname": "updated_lawrence",
+      "lastname": "updated_kulas"
     },
     "emptyFirstname": {
       "email": "empty_firstname@test.test",
@@ -19,6 +28,40 @@
       "email": "without_firstname@test.test",
       "password": "1234",
       "lastname": "someLastname"
+    },
+    "emptyLastname": {
+      "email": "empty_lastname@test.test",
+      "password": "1234",
+      "firstname": "firstname",
+      "lastname": ""
+    },
+    "withoutLastname": {
+      "email": "without_lastname@test.test",
+      "password": "1234",
+      "firstname": "name"
+    },
+    "emptyEmail": {
+      "email": "",
+      "password": "1234",
+      "firstname": "empty email firstname",
+      "lastname": "empty email lastname"
+    },
+    "wrongFormatEmail": {
+      "email": "wrong format",
+      "password": "1234",
+      "firstname": "wrong email firstname",
+      "lastname": "wrong email lastname"
+    },
+    "shortPassword": {
+      "email": "short_password@test.test",
+      "password": "12",
+      "firstname": "short password firstname",
+      "lastname": "short password lastname"
+    },
+    "withoutPassword": {
+      "email": "without_password@test.test",
+      "firstname":"without password firstname",
+      "lastname": "without password lastname"
     }
   }
 }

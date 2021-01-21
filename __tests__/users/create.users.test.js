@@ -1,9 +1,12 @@
 // @ts-check
 
 import _ from 'lodash';
-import getApp from '../server/index.js';
-import encrypt from '../server/lib/secure.js';
-import { getTestData, prepareData } from './helpers/index.js';
+import getApp from '../../server';
+import encrypt from '../../server/lib/secure.js';
+import {
+  getTestData,
+  prepareData,
+} from '../helpers';
 
 describe('test users CRUD', () => {
   let app;
@@ -62,8 +65,16 @@ describe('test users CRUD', () => {
     expect(user).toMatchObject(expected);
   });
 
-  it('create: not be able with empty firstname', async () => {
-    const params = testData.users.emptyFirstname;
+  it.each([
+    ['empty firstname', testData.users.emptyFirstname],
+    ['without firstname', testData.users.withoutFirstname],
+    ['empty lastname', testData.users.emptyLastname],
+    ['without lastname', testData.users.withoutLastname],
+    ['empty email', testData.users.emptyEmail],
+    ['wrong format email', testData.users.wrongFormatEmail],
+    ['too short password (2 symbols)', testData.users.shortPassword],
+    ['without password', testData.users.withoutPassword],
+  ])('create: not be able with: %s', async (testName, params) => {
     const response = await app.inject({
       method: 'POST',
       url: app.reverse('users'),
@@ -78,20 +89,22 @@ describe('test users CRUD', () => {
     expect(user).toBeUndefined();
   });
 
-  it('create: not be able without firstname', async () => {
-    const params = testData.users.withoutFirstname;
+  it('create: not be able with: already existing email', async () => {
+    const existingUserData = testData.users.existing;
+    const existingUser = await models.user.query().findOne({ email: existingUserData.email });
+
     const response = await app.inject({
       method: 'POST',
       url: app.reverse('users'),
       payload: {
-        data: params,
+        data: existingUserData,
       },
     });
 
     expect(response.statusCode).toBe(422);
 
-    const user = await models.user.query().findOne({ email: params.email });
-    expect(user).toBeUndefined();
+    const user = await models.user.query().findOne({ email: existingUserData.email });
+    expect(user).toEqual(existingUser);
   });
 
   afterEach(async () => {

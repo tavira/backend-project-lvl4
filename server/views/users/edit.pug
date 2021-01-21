@@ -1,0 +1,16 @@
+extends ../layouts/application.pug
+
+block header
+    = t('views.users.editUser.header')
+
+block content
+    - viewName = 'views.users.editUser'
+    +formFor()(action=route('patchUser', { id: user.id }) method='post')
+        +input(user, viewName, 'email', errors)(type='email')
+        +input(user, viewName, 'firstname', errors)(type='text')
+        +input(user, viewName, 'lastname', errors)(type='text')
+        +input(user, viewName, 'password', errors)(type='password')
+        +buttonTo(route('patchUser', { id: user.id.toString() }), 'patch')(
+            class='btn btn-primary'
+            value=t(`${viewName}.submit`)
+            )
