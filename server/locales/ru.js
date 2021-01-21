@@ -16,6 +16,14 @@ module.exports = {
           error: 'Не удалось зарегистрировать',
           success: 'Пользователь успешно зарегистрирован',
         },
+        delete: {
+          success: 'Пользователь удалён',
+          otherUserError: 'Нельзя удалить чужого пользователя',
+        },
+        update: {
+          error: 'Не удалось обновить информацию о пользователе',
+          otherUserError: 'Нельзя редактировать чужого пользователя',
+        },
       },
       authError: 'Доступ запрещён! Пожалуйста, авторизируйтесь.',
     },
@@ -30,6 +38,8 @@ module.exports = {
     views: {
       session: {
         new: {
+          email: 'Email',
+          password: 'Пароль',
           signIn: 'Вход',
           submit: 'Войти',
         },
@@ -37,11 +47,25 @@ module.exports = {
       users: {
         id: 'ID',
         email: 'Email',
+        password: 'Пароль',
         firstname: 'Имя',
+        lastname: 'Фамилия',
+        fullname: 'Полное имя',
         createdAt: 'Дата создания',
-        new: {
+        actions: 'Действия',
+        edit: 'Редактировать',
+        delete: 'Удалить',
+        newUser: {
           submit: 'Сохранить',
           signUp: 'Регистрация',
+        },
+        editUser: {
+          header: 'Редактирование пользователя',
+          email: 'Email',
+          password: 'Пароль',
+          firstname: 'Имя',
+          lastname: 'Фамилия',
+          submit: 'Сохранить',
         },
       },
       welcome: {
@@ -54,8 +78,18 @@ module.exports = {
     },
     validation: {
       user: {
+        email: {
+          format: 'Не соответствует формату email',
+        },
+        password: {
+          minLength: 'Не должен быть короче {{ count }} символов',
+        },
         firstname: {
           required: 'Это обязательное поле',
+          minLength: 'Это обязательное поле',
+        },
+        lastname: {
+          minLength: 'Это обязательное поле',
         },
       },
     },

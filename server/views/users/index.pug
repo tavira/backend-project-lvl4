@@ -6,12 +6,20 @@ block content
       tr
         th= t('views.users.id')
         th= t('views.users.email')
-        th= t('views.users.firstname')
+        th= t('views.users.fullname')
         th= t('views.users.createdAt')
+        th= t('views.users.actions')
     tbody
       each user in users
         tr
           td= user.id
           td= user.email
-          td= user.firstname
+          td= user.firstname + ' ' + user.lastname
           td= formatDate(user.createdAt)
+          td(class='text-start')
+            a(title=t('views.users.edit') href=route('editUser', { id: user.id }))
+              | !{t('views.users.edit')}
+            +buttonTo(route('deleteUser', { id: user.id }), 'DELETE')(
+              class='btn btn-link text-danger p-0', value=t('views.users.delete'))
+
+

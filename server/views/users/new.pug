@@ -1,7 +1,7 @@
 extends ../layouts/application.pug
 
 block header
-  = t('views.users.new.signUp')
+  = t('views.users.newUser.signUp')
 
 block content
   - viewName = 'views.users'
@@ -9,4 +9,5 @@ block content
     +input(user, viewName, 'email', errors)(type="text")
     +input(user, viewName, 'password', errors)(type="password")
     +input(user, viewName, 'firstname', errors)(type="text")
-    +submit(user)(value=t('views.users.new.submit'))
+    +input(user, viewName, 'lastname', errors)(type="text")
+    +submit(user)(value=t('views.users.newUser.submit'))

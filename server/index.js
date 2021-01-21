@@ -25,6 +25,8 @@ import knexConfig from '../knexfile.js';
 import models from './models/index.js';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
 
+import userRepository from './repositories/UserRepository';
+
 const mode = process.env.NODE_ENV || 'development';
 const isProduction = mode === 'production';
 const isDevelopment = mode === 'development';
@@ -84,6 +86,7 @@ const addHooks = (app) => {
 const registerPlugins = (app) => {
   app.register(fastifySensible);
   app.register(fastifyErrorPage);
+  app.register(fastifyMethodOverride);
   app.register(fastifyReverseRoutes.plugin);
   app.register(fastifyFormbody, { parser: qs.parse });
   app.register(fastifySecureSession, {
@@ -94,7 +97,10 @@ const registerPlugins = (app) => {
   });
 
   fastifyPassport.registerUserDeserializer(
-    (user) => app.objection.models.user.query().findById(user.id),
+    (user) => {
+      const userFromStorage = app.objection.models.user.query().findById(user.id);
+      return userFromStorage || false;
+    },
   );
   fastifyPassport.registerUserSerializer((user) => Promise.resolve(user));
   fastifyPassport.use(new FormStrategy('form', app));
@@ -109,18 +115,28 @@ const registerPlugins = (app) => {
     },
   )(...args));
 
-  app.register(fastifyMethodOverride);
+  // app.register(fastifyMethodOverride);
   app.register(fastifyObjectionjs, {
     knexConfig: knexConfig[mode],
     models,
+  });
+
+  const repoMapping = {
+    users: userRepository(app),
+  };
+  app.decorate('container', {
+    repos: (repoName) => repoMapping[repoName],
   });
 };
 
 export default () => {
   const app = fastify({
     logger: {
-      prettyPrint: isDevelopment,
+      prettyPrint: {
+        colorize: true,
+      },
     },
+    ignoreTrailingSlash: true,
   });
 
   registerPlugins(app);
