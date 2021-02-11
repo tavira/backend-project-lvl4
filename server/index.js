@@ -26,6 +26,7 @@ import models from './models/index.js';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
 
 import userRepository from './repositories/UserRepository';
+import statusRepository from './repositories/StatusRepository';
 
 const mode = process.env.NODE_ENV || 'development';
 const isProduction = mode === 'production';
@@ -123,6 +124,7 @@ const registerPlugins = (app) => {
 
   const repoMapping = {
     users: userRepository(app),
+    statuses: statusRepository(app),
   };
   app.decorate('container', {
     repos: (repoName) => repoMapping[repoName],
