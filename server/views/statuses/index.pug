@@ -1,0 +1,23 @@
+extends ../layouts/application.pug
+
+block content
+    a(title=t('views.statuses.index.new') href=route('newStatus') class='btn btn-primary mb-1')
+        | !{t('views.statuses.index.new')}
+    table.table.table-striped.table-bordered
+        thead
+            tr
+                th= t('views.statuses.id')
+                th= t('views.statuses.name')
+                th= t('views.statuses.createdAt')
+                th= t('views.statuses.index.actions')
+        tbody
+            each status in statuses
+              tr
+                td= status.id
+                td= status.name
+                td= status.createdAt
+                td(class='text-start')
+                    a(title=t('views.statuses.index.edit') href=route('editStatus', { id: status.id }))
+                      | !{t('views.statuses.index.edit')}
+                    +buttonTo(route('deleteStatus', { id: status.id }), 'DELETE')(
+                       class='btn btn-link text-danger p-0', value=t('views.statuses.index.delete'))

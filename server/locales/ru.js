@@ -25,11 +25,26 @@ module.exports = {
           otherUserError: 'Нельзя редактировать чужого пользователя',
         },
       },
+      statuses: {
+        create: {
+          error: 'Не удалось создать статус',
+          success: 'Статус создан',
+        },
+        delete: {
+          success: 'Статус удалён',
+          error: 'Не удалось удалить статус',
+        },
+        update: {
+          success: 'Статус обновлён',
+          error: 'Не удалось обновить статус',
+        },
+      },
       authError: 'Доступ запрещён! Пожалуйста, авторизируйтесь.',
     },
     layouts: {
       application: {
         users: 'Пользователи',
+        statuses: 'Статусы',
         signIn: 'Вход',
         signUp: 'Регистрация',
         signOut: 'Выход',
@@ -75,6 +90,26 @@ module.exports = {
           more: 'Узнать Больше',
         },
       },
+      statuses: {
+        id: 'ID',
+        name: 'Название',
+        createdAt: 'Дата создания',
+        updatedAt: 'Дата обновления',
+        index: {
+          new: 'Создать новый статус',
+          edit: 'Редактировать',
+          delete: 'Удалить',
+          actions: 'Действия',
+        },
+        new: {
+          header: 'Создать новый статус',
+          submit: 'Создать',
+        },
+        edit: {
+          header: 'Редактирование статуса',
+          submit: 'Сохранить',
+        },
+      },
     },
     validation: {
       user: {
@@ -89,6 +124,11 @@ module.exports = {
           minLength: 'Это обязательное поле',
         },
         lastname: {
+          minLength: 'Это обязательное поле',
+        },
+      },
+      status: {
+        name: {
           minLength: 'Это обязательное поле',
         },
       },

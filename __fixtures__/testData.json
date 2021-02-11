@@ -63,5 +63,16 @@
       "firstname":"without password firstname",
       "lastname": "without password lastname"
     }
+  },
+  "statuses": {
+    "previouslyAdded": {
+      "name": "В работе"
+    },
+    "new": {
+      "name": "Завершено"
+    },
+    "withEmptyName": {
+      "name": ""
+    }
   }
 }
