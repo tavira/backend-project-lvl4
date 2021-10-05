@@ -44,7 +44,7 @@
       "fastify-reverse-routes": "^2.0.0",
       "fastify-secure-session": "^2.3.0",
       "fastify-sensible": "^3.0.1",
-      "fastify-static": "^3.3.0",
+      "fastify-static": "^4.2.4",
       "i18next": "^19.8.4",
       "knex": "^0.21.12",
       "lodash": "^4.17.20",
