@@ -46,7 +46,7 @@
       "fastify-sensible": "^3.0.1",
       "fastify-static": "^3.3.0",
       "i18next": "^19.8.4",
-      "knex": "^0.21.12",
+      "knex": "^2.4.0",
       "lodash": "^4.17.20",
       "mini-css-extract-plugin": "^1.3.1",
       "objection": "^2.2.3",
